@@ -1,729 +1,1425 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="ko">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>태은이의 생일 아이스크림 케이크</title>
+
+
+
+  <style>
+
+    @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Press+Start+2P&display=swap");
+
+
+
+    :root {
+
+      --ink: #4d3a50;
+
+      --cream: #fff9ee;
+
+      --pink: #ff9fbd;
+
+      --berry: #ee5d7e;
+
+      --mint: #9cdecf;
+
+      --blue: #9fdcf0;
+
+      --choco: #704a3b;
+
+      --plate: #d9eaf2;
+
+    }
+
+
+
+    * { box-sizing: border-box; }
+
+
+
+    body {
+
+      margin: 0;
+
+      min-height: 100svh;
+
+      overflow: hidden;
+
+      color: var(--ink);
+
+      font-family: "Gowun Dodum", sans-serif;
+
+      background:
+
+        radial-gradient(circle at 14% 14%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+
+        radial-gradient(circle at 81% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+
+        radial-gradient(circle at 66% 82%, rgba(255,255,255,.75) 0 2px, transparent 3px),
+
+        linear-gradient(160deg, #fbe7ef, #e8f8ff 55%, #fff3d6);
+
+    }
+
+
+
+    .app {
+
+      position: relative;
+
+      min-height: 100svh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 28px 18px;
+
+      isolation: isolate;
+
+    }
+
+
+
+    .pixel-cloud {
+
+      position: absolute;
+
+      width: 82px;
+
+      height: 22px;
+
+      opacity: .5;
+
+      background: #fff;
+
+      box-shadow: 16px -10px #fff, 34px -4px #fff, 52px -12px #fff;
+
+      z-index: -1;
+
+      border-radius: 2px;
+
+    }
+
+
+
+    .cloud-1 { top: 13%; left: 8%; transform: scale(.7); }
+
+    .cloud-2 { right: 8%; top: 25%; transform: scale(.55); }
+
+    .cloud-3 { left: 14%; bottom: 13%; transform: scale(.5); }
+
+
+
+    .sparkle {
+
+      position: absolute;
+
+      font-size: 20px;
+
+      animation: float 3.4s ease-in-out infinite;
+
+      z-index: -1;
+
+      color: #f1a0b8;
+
+    }
+
+
+
+    .s1 { top: 18%; right: 17%; animation-delay: -.5s; }
+
+    .s2 { top: 31%; left: 12%; animation-delay: -1.4s; }
+
+    .s3 { bottom: 19%; right: 13%; animation-delay: -2.2s; }
+
+    .s4 { bottom: 28%; left: 18%; animation-delay: -.8s; }
+
+
+
+    @keyframes float {
+
+      50% { transform: translateY(-10px) rotate(8deg); }
+
+    }
+
+
+
+    .title {
+
+      margin: 0 0 10px;
+
+      font-family: "Press Start 2P", monospace;
+
+      font-size: clamp(11px, 3.2vw, 15px);
+
+      line-height: 1.8;
+
+      text-align: center;
+
+      color: #865f8c;
+
+      text-shadow: 2px 2px 0 #fff;
+
+    }
+
+
+
+    .guide {
+
+      margin: 0 0 18px;
+
+      text-align: center;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      line-height: 1.65;
+
+    }
+
+
+
+    .counter {
+
+      position: absolute;
+
+      top: 22px;
+
+      right: 18px;
+
+      padding: 9px 11px;
+
+      border: 3px solid #fff;
+
+      border-radius: 12px;
+
+      background: rgba(255,255,255,.78);
+
+      box-shadow: 3px 3px 0 rgba(112,74,59,.13);
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+    }
+
+
+
+    .cake-zone {
+
+      position: relative;
+
+      width: min(340px, 90vw);
+
+      height: 330px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+
+      touch-action: manipulation;
+
+    }
+
+
+
+    .cake-zone:active .cake { transform: scale(.98); }
+
+
+
+    .plate {
+
+      position: absolute;
+
+      bottom: 31px;
+
+      width: 294px;
+
+      height: 54px;
+
+      border: 6px solid #fff;
+
+      border-radius: 50%;
+
+      background: var(--plate);
+
+      box-shadow: 0 8px 0 #b8d0df, 0 14px 0 rgba(77,58,80,.12);
+
+    }
+
+
+
+    .cake {
+
+      position: absolute;
+
+      bottom: 66px;
+
+      width: 258px;
+
+      height: 178px;
+
+      transition: transform .12s ease, opacity .25s ease;
+
+    }
+
+
+
+    /* 아이스크림 케이크의 둥근 외형 */
+
+    .cake-body {
+
+      position: absolute;
+
+      inset: 38px 0 0;
+
+      overflow: hidden;
+
+      border: 6px solid var(--choco);
+
+      border-radius: 42px 42px 28px 28px;
+
+      background:
+
+        radial-gradient(circle at 20px 22px, rgba(255,255,255,.5) 0 3px, transparent 4px),
+
+        radial-gradient(circle at 67px 50px, rgba(255,255,255,.35) 0 4px, transparent 5px),
+
+        radial-gradient(circle at 160px 32px, rgba(255,255,255,.42) 0 3px, transparent 4px),
+
+        linear-gradient(to bottom,
+
+          #ffc0d2 0 31%,
+
+          #aee6dd 31% 62%,
+
+          #fff0b6 62% 100%);
+
+      box-shadow: inset 0 -11px 0 rgba(112,74,59,.11), 0 8px 0 rgba(112,74,59,.15);
+
+    }
+
+
+
+    /* 아이스크림 질감의 가로 물결 */
+
+    .swirl {
+
+      position: absolute;
+
+      left: -6px;
+
+      width: 270px;
+
+      height: 18px;
+
+      border-top: 5px solid rgba(255,255,255,.55);
+
+      border-radius: 50%;
+
+      z-index: 2;
+
+    }
+
+
+
+    .swirl-1 { top: 82px; }
+
+    .swirl-2 { top: 121px; opacity: .7; }
+
+    .swirl-3 { top: 157px; opacity: .55; }
+
+
+
+    .top-scoop {
+
+      position: absolute;
+
+      top: 24px;
+
+      width: 246px;
+
+      height: 58px;
+
+      left: 6px;
+
+      border: 6px solid var(--choco);
+
+      border-radius: 50%;
+
+      background:
+
+        radial-gradient(circle at 33px 25px, rgba(255,255,255,.8) 0 4px, transparent 5px),
+
+        radial-gradient(circle at 95px 36px, rgba(255,255,255,.55) 0 3px, transparent 4px),
+
+        radial-gradient(circle at 174px 20px, rgba(255,255,255,.65) 0 4px, transparent 5px),
+
+        #fff5df;
+
+      box-shadow: inset 0 -12px 0 #ffe0ec;
+
+      z-index: 3;
+
+    }
+
+
+
+    .drip {
+
+      position: absolute;
+
+      top: 66px;
+
+      width: 22px;
+
+      border: 5px solid var(--choco);
+
+      border-top: 0;
+
+      border-radius: 0 0 12px 12px;
+
+      background: #fff5df;
+
+      z-index: 4;
+
+    }
+
+
+
+    .d1 { left: 40px; height: 24px; }
+
+    .d2 { left: 114px; height: 36px; }
+
+    .d3 { right: 38px; height: 27px; }
+
+
+
+    .strawberry, .cherry, .choco-chip {
+
+      position: absolute;
+
+      z-index: 8;
+
+    }
+
+
+
+    .strawberry {
+
+      width: 25px;
+
+      height: 27px;
+
+      border: 4px solid var(--choco);
+
+      border-radius: 45% 45% 55% 55%;
+
+      background: #ff6f91;
+
+      transform: rotate(45deg);
+
+    }
+
+
+
+    .strawberry::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: -11px;
+
+      left: 2px;
+
+      width: 12px;
+
+      height: 8px;
+
+      border: 3px solid var(--choco);
+
+      border-radius: 50% 0 50% 0;
+
+      background: #74bf7c;
+
+    }
+
+
+
+    .berry-1 { left: 42px; top: 17px; }
+
+    .berry-2 { right: 39px; top: 15px; transform: rotate(25deg) scale(.85); }
+
+
+
+    .cherry {
+
+      top: 13px;
+
+      left: 118px;
+
+      width: 21px;
+
+      height: 21px;
+
+      border: 4px solid var(--choco);
+
+      border-radius: 50%;
+
+      background: var(--berry);
+
+    }
+
+
+
+    .cherry::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -19px;
+
+      left: 11px;
+
+      width: 4px;
+
+      height: 19px;
+
+      background: #568c61;
+
+      transform: rotate(25deg);
+
+    }
+
+
+
+    .choco-chip {
+
+      width: 12px;
+
+      height: 12px;
+
+      border: 3px solid var(--choco);
+
+      border-radius: 3px;
+
+      background: #9a6148;
+
+      transform: rotate(20deg);
+
+    }
+
+
+
+    .chip-1 { left: 77px; top: 53px; }
+
+    .chip-2 { right: 69px; top: 56px; transform: rotate(-15deg); }
+
+    .chip-3 { left: 144px; top: 48px; transform: rotate(38deg); }
+
+
+
+    .candle {
+
+      position: absolute;
+
+      top: -20px;
+
+      width: 14px;
+
+      height: 51px;
+
+      border: 4px solid var(--choco);
+
+      border-radius: 3px;
+
+      background: repeating-linear-gradient(45deg, #ffe2ed 0 6px, #8ed3eb 6px 12px);
+
+      z-index: 7;
+
+    }
+
+
+
+    .candle::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -22px;
+
+      left: -4px;
+
+      width: 14px;
+
+      height: 20px;
+
+      border-radius: 50%;
+
+      background: #ffca4f;
+
+      box-shadow: 0 0 14px #ffcc5c;
+
+      animation: flame .55s ease-in-out infinite alternate;
+
+    }
+
+
+
+    .candle::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: -3px;
+
+      left: 3px;
+
+      width: 3px;
+
+      height: 6px;
+
+      background: var(--choco);
+
+    }
+
+
+
+    .c1 { left: 69px; }
+
+    .c2 { left: 120px; top: -32px; }
+
+    .c3 { right: 67px; }
+
+
+
+    @keyframes flame {
+
+      to { transform: scale(.75) translateY(2px); opacity: .8; }
+
+    }
+
+
+
+    /* 먹은 자국 */
+
+    .bite {
+
+      position: absolute;
+
+      width: 62px;
+
+      height: 62px;
+
+      border-radius: 50%;
+
+      background: #f7ecdf;
+
+      opacity: 0;
+
+      z-index: 20;
+
+      transition: opacity .12s ease;
+
+    }
+
+
+
+    .bite.show { opacity: 1; }
+
+
+
+    .b1 { right: -15px; top: 52px; }
+
+    .b2 { right: 7px; top: 95px; }
+
+    .b3 { right: 38px; top: 130px; }
+
+    .b4 { left: -14px; top: 64px; }
+
+    .b5 { left: 4px; top: 108px; }
+
+    .b6 { left: 42px; top: 139px; }
+
+    .b7 { right: 83px; top: 49px; }
+
+    .b8 { left: 87px; top: 109px; }
+
+
+
+    .spoon {
+
+      position: absolute;
+
+      width: 82px;
+
+      height: 22px;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transform: translate(120px, 60px) rotate(-35deg);
+
+      z-index: 30;
+
+    }
+
+
+
+    .spoon::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      width: 30px;
+
+      height: 28px;
+
+      border: 5px solid #8aa5b6;
+
+      border-radius: 50%;
+
+      background: #dcecf2;
+
+    }
+
+
+
+    .spoon::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 10px;
+
+      left: 27px;
+
+      width: 58px;
+
+      height: 11px;
+
+      border: 4px solid #8aa5b6;
+
+      border-left: 0;
+
+      border-radius: 0 10px 10px 0;
+
+      background: #dcecf2;
+
+    }
+
+
+
+    .spoon.animate { animation: scoop .36s ease-out forwards; }
+
+
+
+    @keyframes scoop {
+
+      45% { opacity: 1; transform: translate(-10px, -6px) rotate(-35deg); }
+
+      100% { opacity: 0; transform: translate(-125px, -95px) rotate(-55deg); }
+
+    }
+
+
+
+    .message {
+
+      display: none;
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 100;
+
+      padding: 30px 20px;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      background: rgba(255,249,241,.88);
+
+      backdrop-filter: blur(4px);
+
+    }
+
+
+
+    .message.show { display: flex; }
+
+
+
+    .message-card {
+
+      width: min(360px, 92vw);
+
+      padding: 29px 20px 25px;
+
+      border: 5px solid var(--choco);
+
+      border-radius: 24px;
+
+      background: #fffdf7;
+
+      box-shadow: 9px 9px 0 #f4b8cd;
+
+    }
+
+
+
+    .message h2 {
+
+      margin: 0 0 18px;
+
+      font-family: "Press Start 2P", monospace;
+
+      font-size: clamp(17px, 4.7vw, 24px);
+
+      line-height: 1.7;
+
+      color: #ef6f94;
+
+      animation: bounceIn .65s cubic-bezier(.17,.67,.36,1.5) both;
+
+    }
+
+
+
+    .message p {
+
+      margin: 9px 0;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      line-height: 1.65;
+
+    }
+
+
+
+    @keyframes bounceIn {
+
+      from { opacity: 0; transform: scale(.3) rotate(-5deg); }
+
+      to { opacity: 1; transform: scale(1) rotate(0); }
+
+    }
+
+
+
+    /* 선물 쿠폰 */
+
+    .coupon {
+
+      position: relative;
+
+      margin: 20px auto 0;
+
+      padding: 17px 14px 15px;
+
+      border: 4px dashed #d56c8c;
+
+      border-radius: 13px;
+
+      background:
+
+        linear-gradient(90deg, transparent 50%, rgba(255,255,255,.55) 50%) 0 0 / 12px 12px,
+
+        #ffdce7;
+
+      box-shadow: 4px 4px 0 #efabc0;
+
+      transform: rotate(-2deg);
+
+      animation: couponPop .8s .25s both;
+
+    }
+
+
+
+    .coupon::before,
+
+    .coupon::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 50%;
+
+      width: 20px;
+
+      height: 20px;
+
+      border-radius: 50%;
+
+      background: #fffdf7;
+
+      transform: translateY(-50%);
+
+    }
+
+
+
+    .coupon::before { left: -13px; }
+
+    .coupon::after { right: -13px; }
+
+
+
+    .coupon-label {
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-family: "Press Start 2P", monospace;
+
+      font-size: 10px;
+
+      color: #a24e6b;
+
+    }
+
+
+
+    .coupon-text {
+
+      display: block;
+
+      font-size: 19px;
+
+      font-weight: 900;
+
+      color: #8b405d;
+
+      line-height: 1.45;
+
+    }
+
+
+
+    .coupon-sub {
+
+      display: block;
+
+      margin-top: 5px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      color: #9e6174;
+
+    }
+
+
+
+    @keyframes couponPop {
+
+      from { opacity: 0; transform: translateY(28px) rotate(-8deg) scale(.55); }
+
+      to { opacity: 1; transform: translateY(0) rotate(-2deg) scale(1); }
+
+    }
+
+
+
+    .restart {
+
+      margin-top: 20px;
+
+      padding: 13px 18px;
+
+      border: 4px solid var(--choco);
+
+      border-radius: 12px;
+
+      color: var(--choco);
+
+      background: #ffe38f;
+
+      box-shadow: 4px 4px 0 #e5a35f;
+
+      font-family: "Gowun Dodum", sans-serif;
+
+      font-size: 15px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .restart:active {
+
+      transform: translate(3px, 3px);
+
+      box-shadow: 1px 1px 0 #e5a35f;
+
+    }
+
+
+
+    .confetti {
+
+      position: absolute;
+
+      width: 9px;
+
+      height: 14px;
+
+      z-index: 120;
+
+      animation: fall 1.8s linear forwards;
+
+    }
+
+
+
+    @keyframes fall {
+
+      from { transform: translateY(-40px) rotate(0); opacity: 1; }
+
+      to { transform: translateY(110vh) rotate(700deg); opacity: 0; }
+
+    }
+
+
+
+    .hidden {
+
+      opacity: 0;
+
+      pointer-events: none;
+
+    }
+
   </style>
+
 </head>
+
+
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ko"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;태은이의 생일 아이스크림 케이크&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Press+Start+2P&amp;display=swap");</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--ink: #4d3a50;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--cream: #fff9ee;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--pink: #ff9fbd;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--berry: #ee5d7e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--mint: #9cdecf;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--blue: #9fdcf0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--choco: #704a3b;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--plate: #d9eaf2;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100svh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Gowun Dodum", sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 14% 14%, rgba(255,255,255,.9) 0 2px, transparent 3px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 81% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 66% 82%, rgba(255,255,255,.75) 0 2px, transparent 3px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(160deg, #fbe7ef, #e8f8ff 55%, #fff3d6);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.app {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100svh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 28px 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>isolation: isolate;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pixel-cloud {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 82px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: .5;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 16px -10px #fff, 34px -4px #fff, 52px -12px #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: -1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cloud-1 { top: 13%; left: 8%; transform: scale(.7); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cloud-2 { right: 8%; top: 25%; transform: scale(.55); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cloud-3 { left: 14%; bottom: 13%; transform: scale(.5); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.sparkle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animation: float 3.4s ease-in-out infinite;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: -1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #f1a0b8;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.s1 { top: 18%; right: 17%; animation-delay: -.5s; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.s2 { top: 31%; left: 12%; animation-delay: -1.4s; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.s3 { bottom: 19%; right: 13%; animation-delay: -2.2s; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.s4 { bottom: 28%; left: 18%; animation-delay: -.8s; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes float {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>50% { transform: translateY(-10px) rotate(8deg); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Press Start 2P", monospace;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(11px, 3.2vw, 15px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.8;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #865f8c;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow: 2px 2px 0 #fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.guide {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.65;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.counter {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>right: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 9px 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.78);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 3px 3px 0 rgba(112,74,59,.13);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cake-zone {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: min(340px, 90vw);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 330px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-webkit-tap-highlight-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>touch-action: manipulation;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cake-zone:active .cake { transform: scale(.98); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.plate {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bottom: 31px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 294px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 54px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 6px solid #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--plate);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 8px 0 #b8d0df, 0 14px 0 rgba(77,58,80,.12);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cake {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bottom: 66px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 258px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 178px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: transform .12s ease, opacity .25s ease;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* 아이스크림 케이크의 둥근 외형 */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cake-body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset: 38px 0 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 6px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 42px 42px 28px 28px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 20px 22px, rgba(255,255,255,.5) 0 3px, transparent 4px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 67px 50px, rgba(255,255,255,.35) 0 4px, transparent 5px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 160px 32px, rgba(255,255,255,.42) 0 3px, transparent 4px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(to bottom,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>#ffc0d2 0 31%,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>#aee6dd 31% 62%,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>#fff0b6 62% 100%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: inset 0 -11px 0 rgba(112,74,59,.11), 0 8px 0 rgba(112,74,59,.15);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* 아이스크림 질감의 가로 물결 */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.swirl {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: -6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 270px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 5px solid rgba(255,255,255,.55);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 2;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.swirl-1 { top: 82px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.swirl-2 { top: 121px; opacity: .7; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.swirl-3 { top: 157px; opacity: .55; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.top-scoop {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 246px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 58px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 6px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 33px 25px, rgba(255,255,255,.8) 0 4px, transparent 5px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 95px 36px, rgba(255,255,255,.55) 0 3px, transparent 4px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 174px 20px, rgba(255,255,255,.65) 0 4px, transparent 5px),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>#fff5df;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: inset 0 -12px 0 #ffe0ec;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 3;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.drip {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 66px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 5px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 0 0 12px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fff5df;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 4;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.d1 { left: 40px; height: 24px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.d2 { left: 114px; height: 36px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.d3 { right: 38px; height: 27px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.strawberry, .cherry, .choco-chip {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 8;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.strawberry {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 27px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 45% 45% 55% 55%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #ff6f91;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: rotate(45deg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.strawberry::after {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: -11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50% 0 50% 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #74bf7c;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.berry-1 { left: 42px; top: 17px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.berry-2 { right: 39px; top: 15px; transform: rotate(25deg) scale(.85); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cherry {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 118px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 21px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 21px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--berry);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cherry::before {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: -19px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 19px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #568c61;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: rotate(25deg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.choco-chip {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 3px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #9a6148;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: rotate(20deg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip-1 { left: 77px; top: 53px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip-2 { right: 69px; top: 56px; transform: rotate(-15deg); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip-3 { left: 144px; top: 48px; transform: rotate(38deg); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.candle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: -20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 51px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: repeating-linear-gradient(45deg, #ffe2ed 0 6px, #8ed3eb 6px 12px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 7;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.candle::before {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: -22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: -4px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #ffca4f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 14px #ffcc5c;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animation: flame .55s ease-in-out infinite alternate;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.candle::after {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: -3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.c1 { left: 69px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.c2 { left: 120px; top: -32px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.c3 { right: 67px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes flame {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>to { transform: scale(.75) translateY(2px); opacity: .8; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* 먹은 자국 */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.bite {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 62px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 62px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f7ecdf;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 20;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: opacity .12s ease;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.bite.show { opacity: 1; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b1 { right: -15px; top: 52px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b2 { right: 7px; top: 95px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b3 { right: 38px; top: 130px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b4 { left: -14px; top: 64px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b5 { left: 4px; top: 108px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b6 { left: 42px; top: 139px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b7 { right: 83px; top: 49px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.b8 { left: 87px; top: 109px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.spoon {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 82px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translate(120px, 60px) rotate(-35deg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 30;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.spoon::before {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 5px solid #8aa5b6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #dcecf2;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.spoon::after {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 27px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 58px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid #8aa5b6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 0 10px 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #dcecf2;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.spoon.animate { animation: scoop .36s ease-out forwards; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes scoop {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>45% { opacity: 1; transform: translate(-10px, -6px) rotate(-35deg); }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>100% { opacity: 0; transform: translate(-125px, -95px) rotate(-55deg); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.message {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 100;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 30px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255,249,241,.88);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(4px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.message.show { display: flex; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.message-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: min(360px, 92vw);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 29px 20px 25px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 5px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 24px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fffdf7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 9px 9px 0 #f4b8cd;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.message h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Press Start 2P", monospace;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(17px, 4.7vw, 24px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #ef6f94;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animation: bounceIn .65s cubic-bezier(.17,.67,.36,1.5) both;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.message p {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 9px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.65;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes bounceIn {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>from { opacity: 0; transform: scale(.3) rotate(-5deg); }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>to { opacity: 1; transform: scale(1) rotate(0); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* 선물 쿠폰 */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px auto 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 17px 14px 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px dashed #d56c8c;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(90deg, transparent 50%, rgba(255,255,255,.55) 50%) 0 0 / 12px 12px,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>#ffdce7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 4px 4px 0 #efabc0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: rotate(-2deg);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animation: couponPop .8s .25s both;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon::before,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon::after {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fffdf7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon::before { left: -13px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon::after { right: -13px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon-label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Press Start 2P", monospace;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #a24e6b;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon-text {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 19px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #8b405d;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.45;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.coupon-sub {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #9e6174;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes couponPop {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>from { opacity: 0; transform: translateY(28px) rotate(-8deg) scale(.55); }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>to { opacity: 1; transform: translateY(0) rotate(-2deg) scale(1); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.restart {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 13px 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 4px solid var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--choco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #ffe38f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 4px 4px 0 #e5a35f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Gowun Dodum", sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.restart:active {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translate(3px, 3px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 1px 1px 0 #e5a35f;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.confetti {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 9px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: 120;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animation: fall 1.8s linear forwards;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@keyframes fall {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>from { transform: translateY(-40px) rotate(0); opacity: 1; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>to { transform: translateY(110vh) rotate(700deg); opacity: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hidden {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="app"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pixel-cloud cloud-1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pixel-cloud cloud-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pixel-cloud cloud-3"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="sparkle s1"&gt;✦&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="sparkle s2"&gt;✧&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="sparkle s3"&gt;✦&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="sparkle s4"&gt;✧&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="counter" id="counter"&gt;먹은 횟수: 0 / 30&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 class="title"&gt;BIRTHDAY ICE CREAM CAKE&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="guide"&gt;케이크를 연타해서 다 먹어줘! 🍨&lt;br&gt;30스푼 뒤에 선물이 있어요&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="cake-zone" id="cakeZone" aria-label="아이스크림 케이크 먹기" role="button" tabindex="0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="plate"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="cake" id="cake"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cake-body"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="swirl swirl-1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="swirl swirl-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="swirl swirl-3"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="top-scoop"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="drip d1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="drip d2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="drip d3"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="strawberry berry-1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="strawberry berry-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cherry"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="choco-chip chip-1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="choco-chip chip-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="choco-chip chip-3"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="candle c1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="candle c2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="candle c3"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b3"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b4"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b5"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b6"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b7"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bite b8"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="spoon" id="spoon"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="message" id="message"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="message-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;태은아&lt;br&gt;생일 축하해! 🎂&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;케이크 30스푼 완식 성공!&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="coupon"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="coupon-label"&gt;BIRTHDAY GIFT&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="coupon-text"&gt;1회 자유롭게&lt;br&gt;깨물기 쿠폰&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="coupon-sub"&gt;유효기간: 태은이 생일 당일 ✦&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button class="restart" id="restart"&gt;처음부터 다시 먹기 🍨&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const TOTAL = 30;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let count = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let locked = false;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cakeZone = document.getElementById("cakeZone");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cake = document.getElementById("cake");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const spoon = document.getElementById("spoon");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const counter = document.getElementById("counter");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const message = document.getElementById("message");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const restart = document.getElementById("restart");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bites = [...document.querySelectorAll(".bite")];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function playSound() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const AudioContext = window.AudioContext || window.webkitAudioContext;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ctx = new AudioContext();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const osc = ctx.createOscillator();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const gain = ctx.createGain();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.type = "sine";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.frequency.setValueAtTime(520, ctx.currentTime);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.08);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>gain.gain.setValueAtTime(0.05, ctx.currentTime);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.connect(gain);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>gain.connect(ctx.destination);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.start();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>osc.stop(ctx.currentTime + 0.13);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// 브라우저가 오디오를 막아도 게임은 정상 진행</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function animateSpoon() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>spoon.classList.remove("animate");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>void spoon.offsetWidth;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>spoon.classList.add("animate");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function updateCake() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const visibleBites = Math.min(8, Math.floor(count / 3.5));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>bites.forEach((bite, index) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>bite.classList.toggle("show", index &lt; visibleBites);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const scale = Math.max(0.58, 1 - count * 0.012);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cake.style.transform = `scale(${scale})`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (count &gt;= 24) cake.style.opacity = "0.72";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (count &gt;= 28) cake.style.opacity = "0.38";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function eatCake() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (locked || count &gt;= TOTAL) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>count += 1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>counter.textContent = `먹은 횟수: ${count} / ${TOTAL}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>playSound();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>animateSpoon();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>updateCake();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (count === TOTAL) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>locked = true;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(finishGame, 450);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function finishGame() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cake.classList.add("hidden");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>launchConfetti();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>message.classList.add("show");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function launchConfetti() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const icons = ["■", "●", "★", "✦", "◆"];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; 55; i += 1) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const piece = document.createElement("span");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.className = "confetti";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.textContent = icons[Math.floor(Math.random() * icons.length)];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.style.left = `${Math.random() * 100}%`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.style.top = `${-20 - Math.random() * 35}px`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.style.fontSize = `${10 + Math.random() * 14}px`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>piece.style.animationDelay = `${Math.random() * 0.65}s`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.body.appendChild(piece);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; piece.remove(), 2600);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function resetGame() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>count = 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>locked = false;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>counter.textContent = `먹은 횟수: 0 / ${TOTAL}`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cake.classList.remove("hidden");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cake.style.transform = "scale(1)";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cake.style.opacity = "1";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>bites.forEach((bite) =&gt; bite.classList.remove("show"));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>message.classList.remove("show");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>cakeZone.addEventListener("pointerdown", eatCake);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>cakeZone.addEventListener("keydown", (event) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (event.key === "Enter" || event.key === " ") {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>event.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>eatCake();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>restart.addEventListener("click", resetGame);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+  <main class="app">
+
+    <div class="pixel-cloud cloud-1"></div>
+
+    <div class="pixel-cloud cloud-2"></div>
+
+    <div class="pixel-cloud cloud-3"></div>
+
+
+
+    <span class="sparkle s1">✦</span>
+
+    <span class="sparkle s2">✧</span>
+
+    <span class="sparkle s3">✦</span>
+
+    <span class="sparkle s4">✧</span>
+
+
+
+    <div class="counter" id="counter">먹은 횟수: 0 / 30</div>
+
+
+
+    <h1 class="title">BIRTHDAY ICE CREAM CAKE</h1>
+
+    <p class="guide">케이크를 연타해서 다 먹어줘! 🍨<br>30스푼 뒤에 선물이 있어요</p>
+
+
+
+    <section class="cake-zone" id="cakeZone" aria-label="아이스크림 케이크 먹기" role="button" tabindex="0">
+
+      <div class="plate"></div>
+
+
+
+      <div class="cake" id="cake">
+
+        <div class="cake-body"></div>
+
+
+
+        <div class="swirl swirl-1"></div>
+
+        <div class="swirl swirl-2"></div>
+
+        <div class="swirl swirl-3"></div>
+
+
+
+        <div class="top-scoop"></div>
+
+        <div class="drip d1"></div>
+
+        <div class="drip d2"></div>
+
+        <div class="drip d3"></div>
+
+
+
+        <div class="strawberry berry-1"></div>
+
+        <div class="strawberry berry-2"></div>
+
+        <div class="cherry"></div>
+
+
+
+        <div class="choco-chip chip-1"></div>
+
+        <div class="choco-chip chip-2"></div>
+
+        <div class="choco-chip chip-3"></div>
+
+
+
+        <div class="candle c1"></div>
+
+        <div class="candle c2"></div>
+
+        <div class="candle c3"></div>
+
+
+
+        <div class="bite b1"></div>
+
+        <div class="bite b2"></div>
+
+        <div class="bite b3"></div>
+
+        <div class="bite b4"></div>
+
+        <div class="bite b5"></div>
+
+        <div class="bite b6"></div>
+
+        <div class="bite b7"></div>
+
+        <div class="bite b8"></div>
+
+      </div>
+
+
+
+      <div class="spoon" id="spoon"></div>
+
+    </section>
+
+
+
+    <section class="message" id="message">
+
+      <div class="message-card">
+
+        <h2>태은아<br>생일 축하해! 🎂</h2>
+
+        <p>케이크 30스푼 완식 성공!</p>
+
+
+
+        <div class="coupon">
+
+          <span class="coupon-label">BIRTHDAY GIFT</span>
+
+          <span class="coupon-text">1회 자유롭게<br>깨물기 쿠폰</span>
+
+          <span class="coupon-sub">유효기간: 태은이 생일 당일 ✦</span>
+
+        </div>
+
+
+
+        <button class="restart" id="restart">처음부터 다시 먹기 🍨</button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <script>
+
+    const TOTAL = 30;
+
+    let count = 0;
+
+    let locked = false;
+
+
+
+    const cakeZone = document.getElementById("cakeZone");
+
+    const cake = document.getElementById("cake");
+
+    const spoon = document.getElementById("spoon");
+
+    const counter = document.getElementById("counter");
+
+    const message = document.getElementById("message");
+
+    const restart = document.getElementById("restart");
+
+    const bites = [...document.querySelectorAll(".bite")];
+
+
+
+    function playSound() {
+
+      try {
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+        const ctx = new AudioContext();
+
+        const osc = ctx.createOscillator();
+
+        const gain = ctx.createGain();
+
+
+
+        osc.type = "sine";
+
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+
+        osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.08);
+
+
+
+        gain.gain.setValueAtTime(0.05, ctx.currentTime);
+
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+
+
+
+        osc.connect(gain);
+
+        gain.connect(ctx.destination);
+
+        osc.start();
+
+        osc.stop(ctx.currentTime + 0.13);
+
+      } catch (error) {
+
+        // 브라우저가 오디오를 막아도 게임은 정상 진행
+
+      }
+
+    }
+
+
+
+    function animateSpoon() {
+
+      spoon.classList.remove("animate");
+
+      void spoon.offsetWidth;
+
+      spoon.classList.add("animate");
+
+    }
+
+
+
+    function updateCake() {
+
+      const visibleBites = Math.min(8, Math.floor(count / 3.5));
+
+
+
+      bites.forEach((bite, index) => {
+
+        bite.classList.toggle("show", index < visibleBites);
+
+      });
+
+
+
+      const scale = Math.max(0.58, 1 - count * 0.012);
+
+      cake.style.transform = `scale(${scale})`;
+
+
+
+      if (count >= 24) cake.style.opacity = "0.72";
+
+      if (count >= 28) cake.style.opacity = "0.38";
+
+    }
+
+
+
+    function eatCake() {
+
+      if (locked || count >= TOTAL) return;
+
+
+
+      count += 1;
+
+      counter.textContent = `먹은 횟수: ${count} / ${TOTAL}`;
+
+
+
+      playSound();
+
+      animateSpoon();
+
+      updateCake();
+
+
+
+      if (count === TOTAL) {
+
+        locked = true;
+
+        setTimeout(finishGame, 450);
+
+      }
+
+    }
+
+
+
+    function finishGame() {
+
+      cake.classList.add("hidden");
+
+      launchConfetti();
+
+      message.classList.add("show");
+
+    }
+
+
+
+    function launchConfetti() {
+
+      const icons = ["■", "●", "★", "✦", "◆"];
+
+
+
+      for (let i = 0; i < 55; i += 1) {
+
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+
+        piece.textContent = icons[Math.floor(Math.random() * icons.length)];
+
+        piece.style.left = `${Math.random() * 100}%`;
+
+        piece.style.top = `${-20 - Math.random() * 35}px`;
+
+        piece.style.fontSize = `${10 + Math.random() * 14}px`;
+
+        piece.style.animationDelay = `${Math.random() * 0.65}s`;
+
+
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 2600);
+
+      }
+
+    }
+
+
+
+    function resetGame() {
+
+      count = 0;
+
+      locked = false;
+
+
+
+      counter.textContent = `먹은 횟수: 0 / ${TOTAL}`;
+
+      cake.classList.remove("hidden");
+
+      cake.style.transform = "scale(1)";
+
+      cake.style.opacity = "1";
+
+
+
+      bites.forEach((bite) => bite.classList.remove("show"));
+
+      message.classList.remove("show");
+
+    }
+
+
+
+    cakeZone.addEventListener("pointerdown", eatCake);
+
+
+
+    cakeZone.addEventListener("keydown", (event) => {
+
+      if (event.key === "Enter" || event.key === " ") {
+
+        event.preventDefault();
+
+        eatCake();
+
+      }
+
+    });
+
+
+
+    restart.addEventListener("click", resetGame);
+
+  </script>
+
 </body>
+
 </html>
